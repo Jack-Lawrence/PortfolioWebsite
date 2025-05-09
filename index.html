@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jack Lawrence Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/1a831f6d78.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-header">
+      <div class="logo">Jack Lawrence</div>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#portfolio"><i class="fa-solid fa-code"></i> Portfolio</a></li>
+      <li><a href="#about"><i class="fa-solid fa-user"></i> About Me</a></li>
+      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="portfolio" class="portfolio-section">
+    <h2>Portfolio</h2>
+    <p>Below is a selection of games and projects I've developed on during my time at university and college. Click on
+      each project to explore more details.</p>
+
+    <div class="portfolio-items">
+
+      <div class="portfolio-item">
+        <div class="image-title">
+          <img src="images\stronghand.png" alt="Project One Image">
+          <h3>Strong Hand</h3>
+        </div>
+        <div class="description">
+          <p>"Strong Hand" is a group project, combining strategic card gameplay with a 1920s underworld theme. Built
+            using Unity and C#.</p>
+          <div class="button-container">
+            <a href="#game1-details" class="btn">Read More</a>
+            <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 1 Modal -->
+      <div class="modal" id="game1-details">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeModal('game1-details')">&times;</span>
+
+          <div class="modal-grid">
+            <!-- Left: Title and Image -->
+            <div class="modal-left">
+              <h2>Strong Hand - Dynamic Card Game</h2>
+              <img id="main-image" src="images/stronghand.png" alt="Main Game Screenshot" />
+
+              <div class="thumbnail-row">
+                <img src="images/stronghand.png" class="thumbnail active" alt="Thumbnail 0">
+                <img src="images/stronghand1.png" class="thumbnail" alt="Thumbnail 1">
+                <img src="images/stronghand2.png" class="thumbnail" alt="Thumbnail 2">
+                <img src="images/stronghand3.png" class="thumbnail" alt="Thumbnail 3">
+                <img src="images/stronghand4.png" class="thumbnail" alt="Thumbnail 4">
+              </div>
+            </div>
+
+            <!-- Right: Description and Links -->
+            <div class="modal-right">
+              <p>
+              <p>As a game designer working on "Strong Hand," I had the unique opportunity to help bring a highly
+                immersive and strategic card game to life. Set in the gritty underworld of the 1920s, the game merges
+                the tense atmosphere of organized crime with tactical card mechanics, creating an experience where every
+                decision could mean the difference between life and death.<br><br>
+
+                In this group project, I collaborated with other designers and developers using Unity and C# to build a
+                system where strategy, luck, and player interaction come together. The game places players in the role
+                of a caporegime, an individual who has betrayed their family and is forced to prove themselves once more
+                in a deadly game of cards. With each match, players must outwit their opponent, balancing the use of
+                powerful cards with the looming risk of danger, because in the world of "Strong Hand," every choice has
+                a consequence.<br><br>
+
+                One of the core elements that I contributed to was the card abilities system. Each card is designed with
+                a unique effect, from forcing your opponent into dangerous situations, like cutting off a finger or
+                facing a glassing, to the nail-biting decision of pulling out a roulette card and hoping you have a
+                bullet in the chamber.<br><br>
+
+                It was thrilling to design a game where the tension of every move could decide life or death, and I’m
+                proud to have been part of a team that created a game that challenges players to think strategically,
+                but also embrace the randomness and danger of the underworld.</p>
+
+              </p>
+              <div class="button-container">
+                <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
+                  <i class="fa-solid fa-link"></i> Play on Itch.io
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <div class="image-title">
+          <img src="images\fishing.jpg" alt="Project Two Image">
+          <h3>Fishing Game</h3>
+        </div>
+        <div class="description">
+          <p>Made in Unity using C# for the GGJ Game Jam in 48 hours, players control a snapping turtle who fishes,
+            avoids bubbles, and upgrades his gear.</p>
+          <div class="button-container">
+            <a href="#game2-details" class="btn">Read More</a>
+            <a href="https://allanowo.itch.io/just-a-chill-fishing-game" class="btn external-link" target="_blank">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 1 Modal -->
+      <div class="modal" id="game2-details">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeModal('game2-details')">&times;</span>
+
+          <div class="modal-grid">
+            <!-- Left: Title and Image -->
+            <div class="modal-left">
+              <h2>Just a Chill Fishing Game</h2>
+              <img id="main-image-two" src="images\fishing.jpg" alt="Main Game Screenshot" />
+
+              <div class="thumbnail-row">
+                <img src="images\fishing.jpg" class="thumbnail-two active" alt="Thumbnail 0">
+                <img src="images\fishing1.jpg" class="thumbnail-two" alt="Thumbnail 1">
+                <img src="images\fishing2.jpg" class="thumbnail-two" alt="Thumbnail 2">
+                <img src="images\fishing3.jpg" class="thumbnail-two" alt="Thumbnail 3">
+                <img src="images\fishing4.jpg" class="thumbnail-two" alt="Thumbnail 4">
+              </div>
+            </div>
+
+            <!-- Right: Description and Links -->
+            <div class="modal-right">
+              <p>
+              <p>As a game designer for Just a Chill Fishing Game, I had the exciting challenge of designing and
+                developing a relaxing yet engaging experience within just 48 hours as part of the Global Game Jam (GGJ).
+                Using Unity and Aseprite, our team created a charming game that combines strategic fishing with a
+                relaxing atmosphere.<br><br>
+
+                In this project, I contributed to both the gameplay mechanics and overall design. The player controls a
+                snapping turtle, tasked with completing fishing orders for Marty, a friendly marmot. To create an
+                immersive yet simple experience, I focused on balancing game progression with a chill vibe. The player
+                needs to cast, reel, and avoid obstacles like bubbles, all while upgrading their gear to fish in deeper
+                waters and unlock new challenges.<br><br>
+
+                I worked on designing the core gameplay loop, ensuring it was intuitive yet rewarding. The key challenge
+                was to make sure that the mechanics of casting, reeling, and skill upgrades felt smooth and fun within a
+                tight 48-hour deadline. I also collaborated with the art team to ensure that the visual assets were
+                consistent with the game's relaxing theme, making use of pixel art created in Aseprite.<br><br>
+
+                Despite the time constraints, our team worked efficiently, and the result was a game that felt polished
+                and cohesive. Just a Chill Fishing Game became a testament to our ability to innovate and collaborate
+                under pressure, showcasing our ability to craft a fun, accessible experience in just 48 hours. It was a
+                rewarding experience to work on something so different from my usual projects, and it reminded me of the
+                joy of creating games that bring people a sense of calm and enjoyment.</p>
+
+              </p>
+              <div class="button-container">
+                <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
+                  <i class="fa-solid fa-link"></i> Play on Itch.io
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <div class="image-title">
+          <img src="images/test.webp" alt="Game 3 Image">
+          <h3>Test Box</h3>
+        </div>
+        <div class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
+            placerat ante.</p>
+          <div class="button-container">
+            <a href="#game3-details" class="btn">Read More</a>
+            <a href="https://external-link.com" class="btn external-link" target="_blank">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <div class="image-title">
+          <img src="images/test.webp" alt="Project 4 Image">
+          <h3>Test Box</h3>
+        </div>
+        <div class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
+            placerat ante.</p>
+          <div class="button-container">
+            <a href="#project4-details" class="btn">Read More</a>
+            <a href="https://external-link.com" class="btn external-link" target="_blank">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <div class="image-title">
+          <img src="images/test.webp" alt="Project 5 Image">
+          <h3>Test Box</h3>
+        </div>
+        <div class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
+            placerat ante.</p>
+          <div class="button-container">
+            <a href="#project5-details" class="btn">Read More</a>
+            <a href="https://external-link.com" class="btn external-link" target="_blank">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Hi! I'm Jack. I’m a current third-year Game Design student, close to finishing my BSc (Hons) in Games
+          Development, with a strong passion for video game development. I hold a National Certificate (NC) in Video
+          Game Development and a Higher National Diploma (HND) in Digital Design & Development. With years of experience
+          working in Unity, C#, and GameMaker Language (GML), I thrive on creating engaging interactive experiences with
+          innovative gameplay mechanics. I specialize in building intuitive player experiences and meaningful player
+          interaction. Currently, I’m focused on expanding my skills in Artificial Intelligence (AI) and exploring
+          different genres for creating games with the aim of bringing more complex, dynamic interactions to the games I
+          create. As a game designer, I value the process of refining mechanics and crafting memorable player journeys.
+        </p>
+        <hr class="section-divider">
+        <h3>Tools & Software</h3>
+        <div class="tools-grid">
+          <div class="tool">
+            <i class="fa-brands fa-unity"></i>
+            <span>Unity</span>
+          </div>
+          <div class="tool">
+            <i class="fa-solid fa-cube"></i>
+            <span>Unreal Engine</span>
+          </div>
+          <div class="tool">
+            <i class="fa-solid fa-gamepad"></i>
+            <span>GameMaker Studio</span>
+          </div>
+          <div class="tool">
+            <i class="fa-solid fa-film"></i>
+            <span>Premiere Pro</span>
+          </div>
+          <div class="tool">
+            <i class="fa-solid fa-bezier-curve"></i>
+            <span>Illustrator</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="about-image">
+        <img src="images\profilePhoto.png" alt="Jack Lawrence">
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-info">
+        <h2>Contact</h2>
+        <ul>
+          <li class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a
+              href="mailto:&#106;&#097;&#099;&#107;&#108;&#097;&#119;&#114;&#101;&#110;&#099;&#101;&#053;&#050;&#050;&#053;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email
+              Me</a>
+          </li>
+          <li class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/Jack-Lawrence" target="_blank">Jack-Lawrence</a>
+          </li>
+          <li class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/jack-lawrence-871901280?originalSubdomain=uk"
+              target="_blank">jack-lawrence</a>
+          </li>
+          <li class="contact-item">
+            <i class="fab fa-itch-io"></i>
+            <a href="https://ath3rox.itch.io" target="_blank">Ath3rox</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    © 2025 Jack Lawrence. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
