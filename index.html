@@ -12,219 +12,138 @@
 <body>
   <nav class="navbar">
     <div class="navbar-header">
-      <div class="logo">Jack Lawrence</div>
+      <div class="logo slot-anim">Jack Lawrence</div>
       <div class="menu-toggle" id="menu-toggle">
         <i class="fa-solid fa-bars"></i>
       </div>
     </div>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#portfolio"><i class="fa-solid fa-code"></i> Portfolio</a></li>
-      <li><a href="#about"><i class="fa-solid fa-user"></i> About Me</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+      <li>
+        <a href="#portfolio" class="slot-anim">
+          <i class="fa-solid fa-code"></i>
+          <span class="slot-inner">
+            <span>Portfolio</span>
+            <span>Portfolio</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#about" class="slot-anim">
+          <i class="fa-solid fa-user"></i>
+          <span class="slot-inner">
+            <span>About Me</span>
+            <span>About Me</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#employment" class="slot-anim">
+          <i class="fa-solid fa-briefcase"></i>
+          <span class="slot-inner">
+            <span>Work</span>
+            <span>Work</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="slot-anim">
+          <i class="fa-solid fa-envelope"></i>
+          <span class="slot-inner">
+            <span>Contact</span>
+            <span>Contact</span>
+          </span>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <section id="portfolio" class="portfolio-section">
-    <h2>Portfolio</h2>
-    <p>Below is a selection of games and projects I've developed on during my time at university and college. Click on
+    <h2 id="portfolio-title">My Portfolio</h2>
+    <p id="portfolio-desc">Below is a selection of games and projects I've developed on during my time at university and college. Click on
       each project to explore more details.</p>
 
-    <div class="portfolio-items">
-
-      <div class="portfolio-item">
-        <div class="image-title">
-          <img src="images\stronghand.png" alt="Project One Image">
-          <h3>Strong Hand</h3>
-        </div>
-        <div class="description">
-          <p>"Strong Hand" is a group project, combining strategic card gameplay with a 1920s underworld theme. Built
-            using Unity and C#.</p>
-          <div class="button-container">
-            <a href="#game1-details" class="btn">Read More</a>
-            <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 1 Modal -->
-      <div class="modal" id="game1-details">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('game1-details')">&times;</span>
-
-          <div class="modal-grid">
-            <!-- Left: Title and Image -->
-            <div class="modal-left">
-              <h2>Strong Hand - Dynamic Card Game</h2>
-              <img id="main-image" src="images/stronghand.png" alt="Main Game Screenshot" />
-
-              <div class="thumbnail-row">
-                <img src="images/stronghand.png" class="thumbnail active" alt="Thumbnail 0">
-                <img src="images/stronghand1.png" class="thumbnail" alt="Thumbnail 1">
-                <img src="images/stronghand2.png" class="thumbnail" alt="Thumbnail 2">
-                <img src="images/stronghand3.png" class="thumbnail" alt="Thumbnail 3">
-                <img src="images/stronghand4.png" class="thumbnail" alt="Thumbnail 4">
-              </div>
-            </div>
-
-            <!-- Right: Description and Links -->
-            <div class="modal-right">
-              <p>
-              <p>As a game designer working on "Strong Hand," I had the unique opportunity to help bring a highly
-                immersive and strategic card game to life. Set in the gritty underworld of the 1920s, the game merges
-                the tense atmosphere of organized crime with tactical card mechanics, creating an experience where every
-                decision could mean the difference between life and death.<br><br>
-
-                In this group project, I collaborated with other designers and developers using Unity and C# to build a
-                system where strategy, luck, and player interaction come together. The game places players in the role
-                of a caporegime, an individual who has betrayed their family and is forced to prove themselves once more
-                in a deadly game of cards. With each match, players must outwit their opponent, balancing the use of
-                powerful cards with the looming risk of danger, because in the world of "Strong Hand," every choice has
-                a consequence.<br><br>
-
-                One of the core elements that I contributed to was the card abilities system. Each card is designed with
-                a unique effect, from forcing your opponent into dangerous situations, like cutting off a finger or
-                facing a glassing, to the nail-biting decision of pulling out a roulette card and hoping you have a
-                bullet in the chamber.<br><br>
-
-                It was thrilling to design a game where the tension of every move could decide life or death, and I’m
-                proud to have been part of a team that created a game that challenges players to think strategically,
-                but also embrace the randomness and danger of the underworld.</p>
-
-              </p>
-              <div class="button-container">
-                <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
-                  <i class="fa-solid fa-link"></i> Play on Itch.io
-                </a>
-              </div>
+    <div class="carousel-container">
+      <button class="carousel-arrow left" id="carousel-left" aria-label="Previous">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <div class="portfolio-panels-outer">
+        <div class="portfolio-panels" id="carousel-panels">
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Strong Hand"
+               data-game-desc="Strong Hand is a 1920s underworld card game blending strategy, tension, luck, and survival."
+               data-thumbnails="images/stronghand.png,images/stronghand.png,images/stronghand.png,images/stronghand.png">
+            <img src="images/stronghand.png" alt="Strong Hand">
+            <div class="panel-content">
+              <h3>Strong Hand</h3>
+              <p>1920s underworld card game blending strategy, tension, luck, and survival.</p>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="portfolio-item">
-        <div class="image-title">
-          <img src="images\fishing.jpg" alt="Project Two Image">
-          <h3>Fishing Game</h3>
-        </div>
-        <div class="description">
-          <p>Made in Unity using C# for the GGJ Game Jam in 48 hours, players control a snapping turtle who fishes,
-            avoids bubbles, and upgrades his gear.</p>
-          <div class="button-container">
-            <a href="#game2-details" class="btn">Read More</a>
-            <a href="https://allanowo.itch.io/just-a-chill-fishing-game" class="btn external-link" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 1 Modal -->
-      <div class="modal" id="game2-details">
-        <div class="modal-content">
-          <span class="close-btn" onclick="closeModal('game2-details')">&times;</span>
-
-          <div class="modal-grid">
-            <!-- Left: Title and Image -->
-            <div class="modal-left">
-              <h2>Just a Chill Fishing Game</h2>
-              <img id="main-image-two" src="images\fishing.jpg" alt="Main Game Screenshot" />
-
-              <div class="thumbnail-row">
-                <img src="images\fishing.jpg" class="thumbnail-two active" alt="Thumbnail 0">
-                <img src="images\fishing1.jpg" class="thumbnail-two" alt="Thumbnail 1">
-                <img src="images\fishing2.jpg" class="thumbnail-two" alt="Thumbnail 2">
-                <img src="images\fishing3.jpg" class="thumbnail-two" alt="Thumbnail 3">
-                <img src="images\fishing4.jpg" class="thumbnail-two" alt="Thumbnail 4">
-              </div>
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Wolvenwood"
+               data-game-desc="Wolvenwood is a roguelike dungeon crawler built collaboratively during a second-year university project."
+               data-thumbnails="images/wolvenwood.PNG,images/wolvenwood.PNG,images/wolvenwood.PNG,images/wolvenwood.PNG">
+            <img src="images/wolvenwood.PNG" alt="Wolvenwood">
+            <div class="panel-content">
+              <h3>Wolvenwood</h3>
+              <p>Roguelike dungeon crawler built collaboratively during second-year university project.</p>
             </div>
+          </div>
 
-            <!-- Right: Description and Links -->
-            <div class="modal-right">
-              <p>
-              <p>As a game designer for Just a Chill Fishing Game, I had the exciting challenge of designing and
-                developing a relaxing yet engaging experience within just 48 hours as part of the Global Game Jam (GGJ).
-                Using Unity and Aseprite, our team created a charming game that combines strategic fishing with a
-                relaxing atmosphere.<br><br>
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Just a Chill Fishing Game"
+               data-game-desc="A relaxing fishing adventure as a turtle, balancing tasks, upgrades, and exploration."
+               data-thumbnails="images/fishing1.jpg,images/fishing1.jpg,images/fishing1.jpg,images/fishing1.jpg">
+            <img src="images/fishing1.jpg" alt="Just a Chill Fishing Game">
+            <div class="panel-content">
+              <h3>Just a Chill Fishing Game</h3>
+              <p>Relaxing fishing adventure as a turtle, balancing tasks, upgrades, exploration.</p>
+            </div>
+          </div>
 
-                In this project, I contributed to both the gameplay mechanics and overall design. The player controls a
-                snapping turtle, tasked with completing fishing orders for Marty, a friendly marmot. To create an
-                immersive yet simple experience, I focused on balancing game progression with a chill vibe. The player
-                needs to cast, reel, and avoid obstacles like bubbles, all while upgrading their gear to fish in deeper
-                waters and unlock new challenges.<br><br>
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Poly Arena"
+               data-game-desc="Poly Arena is a Unity wave survival prototype showcasing AI systems, scaling difficulty, and settings."
+               data-thumbnails="images/polyArena3.png,images/polyArena3.png,images/polyArena3.png,images/polyArena3.png">
+            <img src="images/polyArena3.png" alt="Poly Arena">
+            <div class="panel-content">
+              <h3>Poly Arena</h3>
+              <p>Unity wave survival prototype showcasing AI systems, scaling difficulty, settings.</p>
+            </div>
+          </div>
 
-                I worked on designing the core gameplay loop, ensuring it was intuitive yet rewarding. The key challenge
-                was to make sure that the mechanics of casting, reeling, and skill upgrades felt smooth and fun within a
-                tight 48-hour deadline. I also collaborated with the art team to ensure that the visual assets were
-                consistent with the game's relaxing theme, making use of pixel art created in Aseprite.<br><br>
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Aki: The Lost Time"
+               data-game-desc="Aki is a mysterious time-based platformer where every second counts."
+               data-thumbnails="images/aki.png,images/aki.png,images/aki.png,images/aki.png">
+            <img src="images/aki.png" alt="Aki">
+            <div class="panel-content">
+              <h3>Aki</h3>
+              <p>Time-based platformer jam game focused on collectables and survival.</p>
+            </div>
+          </div>
 
-                Despite the time constraints, our team worked efficiently, and the result was a game that felt polished
-                and cohesive. Just a Chill Fishing Game became a testament to our ability to innovate and collaborate
-                under pressure, showcasing our ability to craft a fun, accessible experience in just 48 hours. It was a
-                rewarding experience to work on something so different from my usual projects, and it reminded me of the
-                joy of creating games that bring people a sense of calm and enjoyment.</p>
-
-              </p>
-              <div class="button-container">
-                <a href="https://gcugames.itch.io/nothing-personal-1" class="btn external-link" target="_blank">
-                  <i class="fa-solid fa-link"></i> Play on Itch.io
-                </a>
-              </div>
+          <div class="portfolio-panel" tabindex="0"
+               data-game-title="Insignia"
+               data-game-desc="Insignia is a fast-paced 2D action platformer demo showcasing combat, casting, and exploration."
+               data-thumbnails="images/insignia.png,images/insignia.png,images/insignia.png,images/insignia.png">
+            <img src="images/insignia.png" alt="Insignia">
+            <div class="panel-content">
+              <h3>Insignia</h3>
+              <p>Fast-paced 2D action platformer demo showcasing combat, casting, exploration.</p>
             </div>
           </div>
         </div>
       </div>
+      <button class="carousel-arrow right" id="carousel-right" aria-label="Next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
 
-      <div class="portfolio-item">
-        <div class="image-title">
-          <img src="images/test.webp" alt="Game 3 Image">
-          <h3>Test Box</h3>
-        </div>
-        <div class="description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
-            placerat ante.</p>
-          <div class="button-container">
-            <a href="#game3-details" class="btn">Read More</a>
-            <a href="https://external-link.com" class="btn external-link" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="image-title">
-          <img src="images/test.webp" alt="Project 4 Image">
-          <h3>Test Box</h3>
-        </div>
-        <div class="description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
-            placerat ante.</p>
-          <div class="button-container">
-            <a href="#project4-details" class="btn">Read More</a>
-            <a href="https://external-link.com" class="btn external-link" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item">
-        <div class="image-title">
-          <img src="images/test.webp" alt="Project 5 Image">
-          <h3>Test Box</h3>
-        </div>
-        <div class="description">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nulla velit, aliquam in ligula ut, aliquet
-            placerat ante.</p>
-          <div class="button-container">
-            <a href="#project5-details" class="btn">Read More</a>
-            <a href="https://external-link.com" class="btn external-link" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
-        </div>
+    <div id="game-page" class="game-page" style="display:none;">
+      <div class="game-page-inner">
+        <div class="game-page-image"></div>
+        <div class="game-page-content"></div>
       </div>
     </div>
   </section>
@@ -233,14 +152,15 @@
     <div class="about-container">
       <div class="about-text">
         <h2>About Me</h2>
-        <p>Hi! I'm Jack. I’m a current third-year Game Design student, close to finishing my BSc (Hons) in Games
-          Development, with a strong passion for video game development. I hold a National Certificate (NC) in Video
-          Game Development and a Higher National Diploma (HND) in Digital Design & Development. With years of experience
-          working in Unity, C#, and GameMaker Language (GML), I thrive on creating engaging interactive experiences with
-          innovative gameplay mechanics. I specialize in building intuitive player experiences and meaningful player
-          interaction. Currently, I’m focused on expanding my skills in Artificial Intelligence (AI) and exploring
-          different genres for creating games with the aim of bringing more complex, dynamic interactions to the games I
-          create. As a game designer, I value the process of refining mechanics and crafting memorable player journeys.
+        <p>Hi, I’m Jack, a fourth-year Game Design student working towards a first-class degree in Games Development. 
+          I’ve always been passionate about creating games that offer players unique, engaging experiences. 
+          Along the way, I’ve earned an NC in Video Game Development and an HND in Digital Design & Development, 
+          and I’ve built strong skills in Unity, C#, and GameMaker Language (GML).
+          <br><br>
+          I love experimenting with mechanics, refining ideas through iteration, and finding ways to make 
+          gameplay feel both intuitive and meaningful. Right now, my dissertation explores how power imbalances 
+          affect player behaviour and social interaction in cooperative games, combining my interests in multiplayer design 
+          and player psychology. Outside of game development you’ll usually find me at the gym, climbing Munros, or playing the latest video games.
         </p>
         <hr class="section-divider">
         <h3>Tools & Software</h3>
@@ -258,19 +178,63 @@
             <span>GameMaker Studio</span>
           </div>
           <div class="tool">
+            <i class="fa-solid fa-code"></i>
+            <span>Visual Studio</span>
+          </div> 
+          <div class="tool">
             <i class="fa-solid fa-film"></i>
             <span>Premiere Pro</span>
           </div>
           <div class="tool">
             <i class="fa-solid fa-bezier-curve"></i>
             <span>Illustrator</span>
-          </div>
+          </div>         
         </div>
 
       </div>
 
       <div class="about-image">
-        <img src="images\profilePhoto.png" alt="Jack Lawrence">
+        <img src="images/profilePhoto.png" alt="Jack Lawrence">
+      </div>
+    </div>
+  </section>
+
+    <section id="employment" class="employment-section">
+    <div class="employment-container">
+      <h2 class="employment-title">Work & Experience</h2>
+      <div class="employment-columns">
+        <div class="previous-employment">
+          <ul class="previous-employment-list">
+            <li>
+              <strong>Crew Member</strong>McDonald's (2018–2021)<br>
+              <span>Worked in a fast-paced environment delivering high-quality customer service, food preparation, and maintaining hygiene standards.</span>
+            </li>
+            <li>
+              <strong>Crew Trainer</strong>McDonald's (2021–2022)<br>
+              <span>Trained new employees, ensured company standards were met, and supported management in day-to-day operations.</span>
+            </li>
+            <li>
+              <strong>Bartender / FOH</strong>The Broughton (2022–2023)<br>
+              <span>Provided bar service, front-of-house duties, and maintained excellent customer service in an upmarket venue.</span>
+            </li>
+            <li>
+              <strong>Lead Video Editor</strong>Olli43LTD (2023–2024)<br>
+              <span>Produced and edited engaging video content for a large online audience, meeting deadlines and creative briefs.</span>
+            </li>
+            <li>
+              <strong>Bar Staff</strong>Underbelly (2024, Edinburgh Fringe)<br>
+              <span>Worked as part of a festival team delivering high-volume bar service during peak season.</span>
+            </li>
+            <li>
+              <strong>Online Assistant</strong>Sainsbury’s (2024–2025)<br>
+              <span>Handled online grocery orders, stock management, and ensured timely delivery preparation.</span>
+            </li>
+            <li>
+              <strong>Bar Supervisor</strong>Underbelly (2025, Edinburgh Fringe)<br>
+              <span>Supervised bar operations, managed seasonal staff, and ensured smooth service during busy periods.</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
