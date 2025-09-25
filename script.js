@@ -1,8 +1,43 @@
+
+// Mobile menu overlay logic
 const toggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
+const mobileMenu = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+function openMobileMenu() {
+  mobileMenu.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent background scroll
+}
+
+function closeMobileMenu() {
+  mobileMenu.classList.remove('active');
+  document.body.style.overflow = '';
+}
 
 toggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+  if (window.innerWidth <= 768) {
+    openMobileMenu();
+  } else {
+    navLinks.classList.toggle('active');
+  }
+});
+
+if (mobileMenuClose) {
+  mobileMenuClose.addEventListener('click', closeMobileMenu);
+}
+
+// Close mobile menu when a link is clicked
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+mobileNavLinks.forEach(link => {
+  link.addEventListener('click', closeMobileMenu);
+});
+
+// Optional: Close menu on resize to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    closeMobileMenu();
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function () {

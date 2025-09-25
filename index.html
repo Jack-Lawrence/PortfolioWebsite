@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jack Lawrence Portfolio</title>
+  <title>Jack Lawrence | Digital Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/1a831f6d78.js" crossorigin="anonymous"></script>
 </head>
@@ -57,6 +58,33 @@
     </ul>
   </nav>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <ul class="mobile-nav-links">
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#employment">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-contact-links">
+      <a href="mailto:&#106;&#097;&#099;&#107;&#108;&#097;&#119;&#114;&#101;&#110;&#099;&#101;&#053;&#050;&#050;&#053;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;" class="mobile-contact-item" aria-label="Email">
+        <i class="fas fa-envelope"></i> <span>Email</span>
+      </a>
+      <a href="https://github.com/Jack-Lawrence" class="mobile-contact-item" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i> <span>GitHub</span>
+      </a>
+      <a href="https://www.linkedin.com/in/jack-lawrence-871901280?originalSubdomain=uk" class="mobile-contact-item" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
+      </a>
+      <a href="https://ath3rox.itch.io" class="mobile-contact-item" target="_blank" aria-label="Itch.io">
+        <i class="fab fa-itch-io"></i> <span>Itch.io</span>
+      </a>
+    </div>
+  </div>
+
   <section id="portfolio" class="portfolio-section">
     <h2 id="portfolio-title">My Portfolio</h2>
     <p id="portfolio-desc">Below is a selection of games and projects I've developed on during my time at university and college. Click on
@@ -70,12 +98,12 @@
         <div class="portfolio-panels" id="carousel-panels">
           <div class="portfolio-panel" tabindex="0"
                data-game-title="Strong Hand"
-               data-game-desc="Strong Hand is a 1920s underworld card game blending strategy, tension, luck, and survival."
+               data-game-desc="Strong Hand was a two-term project completed during my third year at university. We worked with an external client, holding monthly meetings to share progress and receive industry feedback. I acted as the main contact for the client, managing additional emails and questions outside of scheduled meetings, which gave me responsibility to represent the team’s updates.<br><br>In the first term, my two fellow game designers and I focused on pre-production—designing the game’s setting, rules, systems, and requirements. This groundwork allowed programmers and artists to begin work on the initial production of the vertical slice.<br><br>During the second term, the focus shifted to production—polishing the vertical slice and adding art and final details. With less design work needed, I supported the programmers by picking up tasks to help keep the project on track.<br><br>Throughout the project, I collaborated with 10 other students, and we developed a strong team dynamic by the end of the module.<br><br>Skills gained:<br>• Client communication and stakeholder management<br>• Project coordination and team leadership<br>• Collaborative teamwork in a multidisciplinary setting<br>• Game design and system development<br>• Flexibility in adapting to production needs<br>• Time management and deadline adherence"
                data-thumbnails="images/stronghand.png,images/stronghand.png,images/stronghand.png,images/stronghand.png">
             <img src="images/stronghand.png" alt="Strong Hand">
             <div class="panel-content">
               <h3>Strong Hand</h3>
-              <p>1920s underworld card game blending strategy, tension, luck, and survival.</p>
+              <p>Third-year project: client communication, team leadership, and game design in a multidisciplinary team.</p>
             </div>
           </div>
 
@@ -92,14 +120,25 @@
 
           <div class="portfolio-panel" tabindex="0"
                data-game-title="Just a Chill Fishing Game"
-               data-game-desc="A relaxing fishing adventure as a turtle, balancing tasks, upgrades, and exploration."
-               data-thumbnails="images/fishing1.jpg,images/fishing1.jpg,images/fishing1.jpg,images/fishing1.jpg">
+               data-game-desc="Just a Chill Fishing Game was created during the Global Game Jam 2025, developed over a 48-hour period right before the start of our second university term in third year. I worked alongside four fellow third-year students, a mix of designers and programmers, to plan, design, code, create art, and add sound to bring the game to life under a tight deadline.<br><br>The theme for the jam was 'Bubbles,' which we used as the core lose condition — if players accidentally popped a bubble while fishing, the fish they had on their hook would be lost and they’d return to the surface. This added a bit of tension to an otherwise relaxing gameplay loop, giving it a unique twist.<br><br>The jam was an intense but rewarding experience that taught us a lot about rapid prototyping, scope management, and how to prioritise the features that really matter. With only 48 hours, we had to make quick decisions about what to include and what to cut to ensure the game was polished and playable by the submission deadline.<br><br>Unfortunately, due to red weather warnings at the time, we couldn’t attend the in-person showcase at the university. However, we’ve since had classmates play and provide feedback, and many reported getting around 15 minutes of solid gameplay out of it, which, for a game jam title, we’re really proud of.<br><br>Skills gained:<br>• Rapid prototyping and scope management<br>• Cross-discipline collaboration under pressure<br>• Time-constrained decision making<br>• Basic sound design and asset integration<br>• Creative problem-solving within theme restrictions<br>• Playtesting and interpreting feedback post-jam"
+               data-thumbnails="images/fishing.jpg,images/fishing1.jpg,images/fishing2.jpg,images/fishing3.jpg">
             <img src="images/fishing1.jpg" alt="Just a Chill Fishing Game">
             <div class="panel-content">
               <h3>Just a Chill Fishing Game</h3>
-              <p>Relaxing fishing adventure as a turtle, balancing tasks, upgrades, exploration.</p>
+              <p>Game jam project: rapid prototyping, creative problem-solving, and cross-discipline teamwork.</p>
             </div>
           </div>
+
+            <div class="portfolio-panel" tabindex="0"
+                 data-game-title="Portfolio Website"
+                 data-game-desc="This very website! Designed and built from scratch to showcase my work, with a carousel, mobile menu, and modern responsive design."
+                 data-thumbnails="images/portfolio.png,images/portfolio1.png,images/portfolio2.png,images/portfolio3.png">
+              <img src="images/portfolio.png" alt="Portfolio Website">
+              <div class="panel-content">
+                <h3>Portfolio Website</h3>
+                <p>This website! Designed and built from scratch to showcase my work, with a carousel, mobile menu, and responsive design.</p>
+              </div>
+            </div>
 
           <div class="portfolio-panel" tabindex="0"
                data-game-title="Poly Arena"
@@ -205,6 +244,10 @@
       <div class="employment-columns">
         <div class="previous-employment">
           <ul class="previous-employment-list">
+            <li>
+              <strong>Placement Student</strong>Storm ID (2017 & 2018)<br>
+              <span>Completed two 5-day placements, working with a mentor and project manager. Took initiative to complete tasks independently, showing punctuality and eagerness to learn.</span>
+            </li>
             <li>
               <strong>Crew Member</strong>McDonald's (2018–2021)<br>
               <span>Worked in a fast-paced environment delivering high-quality customer service, food preparation, and maintaining hygiene standards.</span>
