@@ -346,6 +346,7 @@ body {
   background: var(--secondary-bg);
   color: var(--text-light);
   border-radius: 1rem;
+  position: relative;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   max-width: 300px;
   display: flex;
@@ -380,6 +381,67 @@ body {
   color: var(--text-light);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+}
+
+/* Visit button that sits centered on the bottom edge of the panel.  
+   Midpoint of the button will sit on the panel bottom by using a negative
+   bottom offset; kept inside the panel element (panel is relative).
+   Does NOT change parent overflow (carousel) so it remains working. */
+.panel-visit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -20px; /* half of the button height (36px) -> adjust if you change .btn-itch height */
+  z-index: 3; /* above panel */
+}
+
+.btn-itch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-itch i {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.btn-itch:focus,
+.btn-itch:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+  outline: none;
+}
+
+/* Mobile fallback: keep button in-flow so it doesn't try to overlap when space is limited */
+@media (max-width: 1024px) {
+  /* Keep the Visit button visually centered on the panel bottom even on smaller screens.
+     Use absolute positioning but give extra bottom padding to the panel content so
+     the button doesn't overlap the description text. This keeps the midpoint on
+     the panel's bottom edge as requested. */
+  .panel-visit {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -18px; /* adjust if you change .btn-itch height */
+    z-index: 3;
+  }
+
+  .panel-content {
+    /* provide room inside the panel so the button doesn't sit on top of text */
+    padding-bottom: 2.2rem;
+  }
 }
 
 .panel-content h3 {
