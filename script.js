@@ -89,9 +89,82 @@ document.addEventListener('DOMContentLoaded', function () {
   const gamePage = document.getElementById('game-page');
   const portfolioTitle = document.getElementById('portfolio-title');
   const portfolioDesc = document.getElementById('portfolio-desc');
+  let lastOpenedPanel = null;
+
+  // Create a reusable image focus overlay (lightbox) and attach to body.
+  // The overlay now contains a bottom container (like a framed strip) that
+  // holds thumbnails and the close button so the image itself stays contained
+  // and doesn't grow to fill the whole viewport.
+  const imageOverlay = document.createElement('div');
+  imageOverlay.className = 'image-focus-overlay';
+  imageOverlay.innerHTML = `
+    <div class="image-focus-inner">
+      <button class="image-focus-close" aria-label="Close image">&times;</button>
+      <img class="image-focus-img" alt="Expanded image">
+      <div class="image-focus-bottom">
+        <div class="image-focus-thumb-row" aria-hidden="false"></div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(imageOverlay);
+  const overlayImg = imageOverlay.querySelector('.image-focus-img');
+  const overlayClose = imageOverlay.querySelector('.image-focus-close');
+
+  // Calculate and set the bottom container width to match the thumbnails' total width
+  function updateBottomWidth() {
+    const overlayBottom = imageOverlay.querySelector('.image-focus-bottom');
+    const overlayThumbRow = imageOverlay.querySelector('.image-focus-thumb-row');
+    if (!overlayBottom || !overlayThumbRow) return;
+
+    const thumbs = Array.from(overlayThumbRow.children).filter(n => n.offsetWidth);
+    if (thumbs.length === 0) {
+      overlayBottom.style.width = '';
+      return;
+    }
+
+    const thumbStyle = getComputedStyle(overlayThumbRow);
+    // gap may be returned as '8px' etc. Try columnGap then gap
+    const gapPx = parseFloat(thumbStyle.columnGap || thumbStyle.gap) || 8;
+
+    // Sum widths of thumbnails
+    const thumbsWidth = thumbs.reduce((sum, t) => sum + t.offsetWidth, 0);
+
+    const bottomStyle = getComputedStyle(overlayBottom);
+    const paddingLeft = parseFloat(bottomStyle.paddingLeft) || 0;
+    const paddingRight = parseFloat(bottomStyle.paddingRight) || 0;
+
+    // Total desired width = thumbs + gaps between thumbs + horizontal padding
+    const gapsTotal = gapPx * Math.max(0, thumbs.length - 1);
+    const desired = thumbsWidth + gapsTotal + paddingLeft + paddingRight;
+
+    // Constrain so it never exceeds viewport width (leave little margin)
+    const constrained = Math.min(desired + 8, Math.round(window.innerWidth * 0.94));
+    overlayBottom.style.width = constrained + 'px';
+  }
+
+  // Recompute on resize while the overlay is open
+  window.addEventListener('resize', () => {
+    if (imageOverlay.classList.contains('visible')) updateBottomWidth();
+  });
+
+  // Close overlay when clicking backdrop or close button
+  imageOverlay.addEventListener('click', (e) => {
+    if (e.target === imageOverlay || e.target === overlayClose) {
+      imageOverlay.classList.remove('visible');
+    }
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      imageOverlay.classList.remove('visible');
+    }
+  });
 
   panels.forEach(panel => {
     panel.addEventListener('click', function () {
+      // remember which panel was opened so we can return to it on close (mobile)
+      lastOpenedPanel = panel;
       // On mobile (or narrow viewports) ensure the portfolio section is scrolled
       // into view before opening the panel details. This prevents the page from
       // jumping to a different position when the panel expands vertically.
@@ -125,6 +198,46 @@ document.addEventListener('DOMContentLoaded', function () {
         img.classList.add('main-image');
         gamePage.querySelector('.main-image-container').appendChild(img);
 
+        // Clicking the main image container opens the focus/lightbox overlay
+        const mainImageContainer = gamePage.querySelector('.main-image-container');
+        if (mainImageContainer) {
+          mainImageContainer.style.cursor = 'zoom-in';
+          mainImageContainer.addEventListener('click', () => {
+            overlayImg.src = img.src;
+            // populate overlay thumbnails to match the current panel
+            const overlayThumbRow = imageOverlay.querySelector('.image-focus-thumb-row');
+            if (overlayThumbRow) {
+              overlayThumbRow.innerHTML = '';
+              thumbnails.forEach(src => {
+                const oThumb = document.createElement('img');
+                oThumb.src = src;
+                oThumb.className = 'image-focus-thumb';
+                if (src === img.src) oThumb.classList.add('active');
+                overlayThumbRow.appendChild(oThumb);
+
+                // When a thumb is clicked, swap the overlay image and the game page main image
+                oThumb.addEventListener('click', () => {
+                  overlayImg.src = src;
+                  img.src = src; // also swap the main image in the game page
+                  // update active state
+                  overlayThumbRow.querySelectorAll('.image-focus-thumb').forEach(t => t.classList.remove('active'));
+                  oThumb.classList.add('active');
+                });
+
+                // Ensure measurements update after the thumbnail loads
+                oThumb.addEventListener('load', () => {
+                  // small timeout so layout settles
+                  setTimeout(updateBottomWidth, 30);
+                });
+              });
+
+              // call once after insertion to set the bottom width (if images cached may be immediate)
+              setTimeout(updateBottomWidth, 40);
+            }
+            imageOverlay.classList.add('visible');
+          });
+        }
+
         // Thumbnails
         const thumbRow = gamePage.querySelector('.thumbnail-row');
         thumbnails.forEach(src => {
@@ -137,6 +250,14 @@ document.addEventListener('DOMContentLoaded', function () {
           // Click to swap main image
           thumb.addEventListener('click', () => {
             img.src = src;
+            // if the overlay is visible, keep it in sync (update overlay main image and active thumb)
+            const overlayThumbRow = imageOverlay.querySelector('.image-focus-thumb-row');
+            if (imageOverlay.classList.contains('visible')) {
+              overlayImg.src = src;
+              if (overlayThumbRow) {
+                overlayThumbRow.querySelectorAll('.image-focus-thumb').forEach(t => t.classList.toggle('active', t.src === src));
+              }
+            }
           });
         });
 
@@ -151,6 +272,18 @@ document.addEventListener('DOMContentLoaded', function () {
           carouselContainer.style.display = '';
           if (portfolioTitle) portfolioTitle.style.display = '';
           if (portfolioDesc) portfolioDesc.style.display = '';
+
+          // On mobile / narrow viewports, scroll back to the panel the user opened
+          // so they return to the same place in the list.
+          if (lastOpenedPanel && window.innerWidth <= 1024) {
+            // Use smooth scroll to center the panel in the viewport where possible
+            try {
+              lastOpenedPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (e) {
+              // fallback: instant scroll
+              lastOpenedPanel.scrollIntoView();
+            }
+          }
         };
       };
 

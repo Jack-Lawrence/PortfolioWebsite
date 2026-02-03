@@ -374,7 +374,9 @@ body {
 
 .panel-content {
   padding: 1rem;
-  height: 147px;
+  padding-bottom: 2.2rem; /* extra space so the Visit button doesn't overlap description */
+  /* Increase slightly to avoid sub-pixel rounding issues (ensures full coverage across browsers) */
+  min-height: calc(147px + 1.25rem); /* ~167px total */
   width: 100%;
   text-align: center;
   background: var(--panel-bg);
@@ -538,6 +540,127 @@ body {
   margin: 0 auto;
 }
 
+/* Image focus (lightbox-style) overlay */
+.image-focus-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Darker backdrop for stronger focus */
+  background: rgba(0,0,0,0.85);
+  z-index: 2100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
+}
+.image-focus-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Centering inner content and stacking image + bottom container */
+.image-focus-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 96%;
+  max-width: 1200px; /* a bit larger so images feel more prominent */
+  box-sizing: border-box;
+}
+
+.image-focus-inner { position: relative; }
+
+.image-focus-img {
+  width: 100%;
+  /* Reduce the reserved bottom space so the image can be larger overall.
+     This keeps the bottom strip visible while enlarging the image. */
+  max-height: calc(100vh - 90px);
+  object-fit: contain;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 14px 56px rgba(0,0,0,0.6);
+  display: block;
+  border: 5px solid rgba(255,255,255,0.06);
+}
+
+/* Bottom container that visually frames thumbnails and contains the close button */
+.image-focus-bottom {
+  width: 100%;
+  max-width: 514px; /* keep the bottom strip narrower than very wide images */
+  margin: 0 auto;    /* center under the image */
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+}
+
+.image-focus-thumb-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  flex: 1 1 auto; /* allow thumbnails to take remaining space */
+}
+
+.image-focus-thumb {
+  width: 96px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.9;
+  border: 2px solid transparent;
+  transition: transform 0.12s ease, opacity 0.12s ease, border-color 0.12s ease;
+  flex: 0 0 auto;
+}
+.image-focus-thumb:hover,
+.image-focus-thumb:focus {
+  transform: translateY(-3px);
+  opacity: 1;
+}
+.image-focus-thumb.active {
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+.image-focus-close {
+  position: absolute;
+  top: -64px; /* sit above the image and centered */
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--contact-bg); /* simple white circular button */
+  border: none;
+  color: var(--text-light);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2120;
+}
+
+@media (max-width: 480px) {
+  .image-focus-thumb {
+    width: 64px;
+    height: 40px;
+  }
+  .image-focus-img {
+    max-height: calc(100vh - 110px);
+  }
+}
+
 .main-image {
   width: 100%;
   max-width: 800px;
@@ -674,6 +797,7 @@ body {
   margin-top: 1rem;
   font-size: 1.15rem;
   text-align: left;
+  padding-right: .5rem;
 }
 
 /* --- Close Button --- */
@@ -891,7 +1015,7 @@ body {
 
 
 /* =========================
-   Employment Section Styling (Updated)
+   Employment Section Styling
    ========================= */
 .employment-section {
   padding: 50px 20px;
@@ -908,12 +1032,87 @@ body {
   width: 100%;
 }
 
+/* Compact qualifications block inside Employment section */
+.qualifications {
+  text-align: center;
+  margin-bottom: 1.2rem; /* slightly larger gap before employment cards */
+}
+.qualifications-title {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  margin: 0 0 0.6rem 0;
+  font-weight: 600;
+}
+.qual-grid {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch;
+}
+.qual-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-start; /* ensure logo and text align left */
+  min-width: 260px;
+}
+.qual-logo {
+  width: 48px;
+  height: 48px;
+  background: transparent; /* place for institution logo */
+  border-radius: 6px;
+  flex: 0 0 48px;
+}
+.qual-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.qual-info {
+  text-align: left; /* left-align study name and institution */
+}
+.qual-info strong {
+  display: block;
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+.qual-institution {
+  display: block;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 768px) {
+  .qual-grid {
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .qual-box {
+    min-width: 220px;
+    width: 90%;
+    padding: 0.6rem 0.9rem;
+  }
+  .qual-logo {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+}
+
 .employment-title {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2rem; /* default large heading size */
   margin-bottom: 2rem;
   color: var(--text-dark);
 }
+
 
 /* Previous Employment as horizontal panels */
 .previous-employment {
@@ -1105,5 +1304,87 @@ button:focus,
     padding: 1.5vw;
     gap: 2rem;
     margin: 2rem 0;
+  }
+}
+
+/* Tweak game page sizes for small mobile screens so content fits comfortably */
+@media (max-width: 768px) {
+  .game-page {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .game-page-inner {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .game-page-image,
+  .game-page-content {
+    width: 100%;
+    flex: none;
+  }
+
+  .game-page-content {
+    padding: 0.75rem 1rem; /* reduce horizontal padding */
+    box-sizing: border-box;
+  }
+
+  .game-page-content h3 {
+    font-size: 1.4rem; /* smaller title */
+  }
+
+  /* Center the title within the header row on mobile without moving the close icon */
+  .game-page-header-row {
+    position: relative;
+    align-items: center; /* vertical centering baseline */
+    justify-content: center; /* keep layout centered, title will be absolutely centered */
+    /* ensure the header row keeps space for the absolutely positioned title
+       so it doesn't collapse onto neighbouring content */
+    min-height: 2.5rem;
+    margin-bottom: 8px;
+  }
+
+  .game-page-header-row h3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    text-align: center;
+    font-size: 1.65rem; /* increase by ~4px from 1.4rem */
+    line-height: 1;
+    z-index: 1;
+    white-space: nowrap; /* keep title on one line so it centers cleanly */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .game-page-close {
+    position: absolute;
+    right: 0.5rem; /* keep the close button pinned to the right edge */
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 2;
+  }
+
+  .game-page-content p {
+    font-size: 0.95rem; /* slightly smaller body text */
+    line-height: 1.4;
+    max-height: 280px; /* keep scrolling area reasonable */
+  }
+
+  .main-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .thumbnail-row {
+    margin-top: 0.6rem;
+  }
+
+  .game-thumb {
+    width: 30%; /* slightly larger thumbs but fewer visible, keeps layout tidy */
   }
 }
