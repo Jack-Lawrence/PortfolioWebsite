@@ -374,7 +374,6 @@ body {
 
 .panel-content {
   padding: 1rem;
-  padding-bottom: 2.2rem; /* extra space so the Visit button doesn't overlap description */
   /* Increase slightly to avoid sub-pixel rounding issues (ensures full coverage across browsers) */
   min-height: calc(147px + 1.25rem); /* ~167px total */
   width: 100%;
@@ -383,25 +382,25 @@ body {
   color: var(--text-light);
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; /* Allow content to grow to fill parent space if needed */
 }
 
-/* Visit button that sits centered on the bottom edge of the panel.  
-   Midpoint of the button will sit on the panel bottom by using a negative
-   bottom offset; kept inside the panel element (panel is relative).
-   Does NOT change parent overflow (carousel) so it remains working. */
+/* Visit button flow adjustment */
 .panel-visit {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -20px; /* half of the button height (36px) -> adjust if you change .btn-itch height */
-  z-index: 3; /* above panel */
+  margin-top: auto; /* Push button to the bottom */
+  position: relative;
+  z-index: 3;
+  padding-top: 1rem; 
 }
 
 .btn-itch {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--accent);
+  background: #fa5c5c;
   color: #fff;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
@@ -428,28 +427,22 @@ body {
 
 /* Mobile fallback: keep button in-flow so it doesn't try to overlap when space is limited */
 @media (max-width: 1024px) {
-  /* Keep the Visit button visually centered on the panel bottom even on smaller screens.
-     Use absolute positioning but give extra bottom padding to the panel content so
-     the button doesn't overlap the description text. This keeps the midpoint on
-     the panel's bottom edge as requested. */
   .panel-visit {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -18px; /* adjust if you change .btn-itch height */
-    z-index: 3;
+    position: relative;
+    left: auto;
+    transform: none;
+    bottom: auto;
   }
 
   .panel-content {
-    /* provide room inside the panel so the button doesn't sit on top of text */
-    padding-bottom: 2.2rem;
+    padding-bottom: 1rem;
   }
 }
 
 .panel-content h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.2rem 0;
 }
 
 .panel-content p {
@@ -1035,37 +1028,37 @@ body {
 /* Compact qualifications block inside Employment section */
 .qualifications {
   text-align: center;
-  margin-bottom: 1.2rem; /* slightly larger gap before employment cards */
+  margin-bottom: 1.1rem; /* slightly larger gap before employment cards */
 }
 .qualifications-title {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--text-dark);
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.55rem 0;
   font-weight: 600;
 }
 .qual-grid {
   display: flex;
-  gap: 1rem;
+  gap: 0.9rem;
   justify-content: center;
   align-items: stretch;
 }
 .qual-box {
   background: #fff;
   border-radius: 8px;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 0.9rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   display: flex;
-  gap: 0.75rem;
+  gap: 0.65rem;
   align-items: center;
   justify-content: flex-start; /* ensure logo and text align left */
-  min-width: 260px;
+  min-width: 235px;
 }
 .qual-logo {
-  width: 48px;
-  height: 48px;
+  width: 43px;
+  height: 43px;
   background: transparent; /* place for institution logo */
   border-radius: 6px;
-  flex: 0 0 48px;
+  flex: 0 0 43px;
 }
 .qual-logo img {
   width: 100%;
@@ -1079,67 +1072,68 @@ body {
 .qual-info strong {
   display: block;
   color: var(--text-dark);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .qual-institution {
   display: block;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-top: 0.15rem;
 }
 
 @media (max-width: 768px) {
   .qual-grid {
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.5rem;
     align-items: center;
   }
   .qual-box {
-    min-width: 220px;
+    min-width: 200px;
     width: 90%;
-    padding: 0.6rem 0.9rem;
+    padding: 0.55rem 0.8rem;
   }
   .qual-logo {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
   }
 }
 
 .employment-title {
   text-align: center;
-  font-size: 2rem; /* default large heading size */
-  margin-bottom: 2rem;
+  font-size: 1.4rem; /* default large heading size */
+  margin-bottom: 1.4rem;
   color: var(--text-dark);
 }
 
 
 /* Previous Employment as horizontal panels */
 .previous-employment {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.25rem;
 }
 .previous-employment h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.9rem;
   color: var(--text-dark);
 }
 .previous-employment-list {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.35rem;
   flex-wrap: wrap;
   justify-content: center;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1100px; /* Limit width to force a 4-column layout (approx 4 * 235px + gaps) */
 }
 
 .previous-employment-list li {
   background: #fff;
   border-radius: 8px;
-  padding: 1rem 1.2rem;
+  padding: 0.9rem 1.1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  min-width: 220px;
-  max-width: 260px;
+  min-width: 200px;
+  max-width: 235px;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -1147,15 +1141,15 @@ body {
 }
 .previous-employment-list li strong {
   color: var(--accent);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.45rem;
   font-weight: 600;
 }
 .previous-employment-list li span {
   display: block;
   color: #555;
-  margin-top: 0.3rem;
-  font-size: .9rem;
+  margin-top: 0.25rem;
+  font-size: .8rem;
 }
 
 /* Work Experience below, keep as vertical list */
